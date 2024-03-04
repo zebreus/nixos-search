@@ -31,9 +31,7 @@ jobs:
           env --chdir=frontend nix develop --accept-flake-config -c yarn install 
           env --chdir=frontend nix develop --accept-flake-config -c yarn prod
           cp -ra frontend/dist ./result
-          cd result
-      - name: Adjust permissions
-        run: |
+          cp frontend/src/404.html ./result
           chown -R `id -u`:`id -g` ./result
           chmod -R a+rwx ./result
       - name: Upload artifact
